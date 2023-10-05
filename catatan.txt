@@ -29,3 +29,7 @@ npx sequelize-cli seed:generate --name RoleSeeder
 
 # running seeder
 npx sequelize-cli db:seed:all
+
+
+#user
+npx sequelize-cli model:generate --name User --attributes name:string, roleId:bigint, password:text, accessToken:text, verified:boolean

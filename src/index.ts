@@ -5,7 +5,7 @@ dotenv.config();
 import router from "./routes/Routes";
 
 const app = express();
-
+app.use(express.json());
 
 function helloWord(){
     return "Hello Selamat Datang Iskandar Zulkarnain (-_-) !";
