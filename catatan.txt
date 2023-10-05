@@ -26,3 +26,6 @@ npx sequelize-cli db:migrate
 # exmpl generate demo-user untuk seeder data
 npx sequelize-cli seed:generate --name demo-user
 npx sequelize-cli seed:generate --name RoleSeeder
+
+# running seeder
+npx sequelize-cli db:seed:all
