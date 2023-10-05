@@ -1,0 +1,28 @@
+-> npm init 
+-> npm i -g typescript
+-> tsc --init
+
+#update file tsconfig
+-> target : "ES6"
+-> activekan  "allowJs": true,
+-> "outDir": "./build",
+
+-> npm i ts-node nodemon typescript -D   
+-> npm i express dotenv  
+-> npm i mysql2
+-> npm i --save-dev @types/express
+
+
+-> npm i --save-dev sequelize-cli / npm install --save sequelize
+-> npx sequelize-cli init
+
+
+#exmpl
+-> npx sequelize-cli model:generate --name Role --attributes roleName:string, active:boolean
+
+# FOR MIGRATION
+npx sequelize-cli db:migrate
+
+# exmpl generate demo-user untuk seeder data
+npx sequelize-cli seed:generate --name demo-user
+npx sequelize-cli seed:generate --name RoleSeeder
