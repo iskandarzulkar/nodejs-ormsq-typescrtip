@@ -33,3 +33,13 @@ npx sequelize-cli db:seed:all
 
 #user
 npx sequelize-cli model:generate --name User --attributes name:string, roleId:bigint, password:text, accessToken:text, verified:boolean
+
+npm i bcrypt
+npm i --save-dev @types/bcrypt
+
+
+npm i validatorjs
+npm i --save-dev @types/validatorjs
+
+
+npm i jsonwebtoken cookie-parser

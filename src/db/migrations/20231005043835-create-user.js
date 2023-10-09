@@ -7,9 +7,12 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       name: {
+        type: Sequelize.STRING
+      },
+      email:{
         type: Sequelize.STRING
       },
       roleId: {
@@ -20,6 +23,9 @@ module.exports = {
       },
       accessToken: {
         type: Sequelize.TEXT
+      },
+      active: {
+        type: Sequelize.BOOLEAN
       },
       verified: {
         type: Sequelize.BOOLEAN
