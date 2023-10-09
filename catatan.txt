@@ -43,3 +43,5 @@ npm i --save-dev @types/validatorjs
 
 
 npm i jsonwebtoken cookie-parser
+
+npm i @types/jsonwebtoken @types/cookie-parser
