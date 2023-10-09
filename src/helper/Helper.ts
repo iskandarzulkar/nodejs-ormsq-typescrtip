@@ -33,14 +33,13 @@ const ResponseData = (status:number, message: string | null, error: any | null, 
 }
 
 const GenerationToken = (data: any) =>{
-	const token = jwt.sign(data, process.env.JWT_TOKEN as string, {expiresIn: "10m"});
+	const token = jwt.sign(data, process.env.JWT_TOKEN as string, {expiresIn: "60m"});
 
 	return token;
 }
 
 const GenerationRefreshToken = (data: any) =>{
-	const token = jwt.sign(data, process.env.JWT_REFRESH_TOKEN as string, {expiresIn: "10m"});
-
+	const token = jwt.sign(data, process.env.JWT_REFRESH_TOKEN as string, {expiresIn: "60m"});
 	return token;
 }
 
@@ -85,4 +84,6 @@ const ExtractRefreshToken = (token: string): UserData | null =>{
 
 	return null;
 }
+
+
 export default {ResponseData, GenerationToken, GenerationRefreshToken, ExtractToken, ExtractRefreshToken}

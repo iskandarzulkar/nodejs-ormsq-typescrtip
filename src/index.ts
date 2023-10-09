@@ -1,4 +1,5 @@
 import express, {Request, Response} from "express";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -6,6 +7,7 @@ import router from "./routes/Routes";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 function helloWord(){
     return "Hello Selamat Datang Iskandar Zulkarnain (-_-) !";

@@ -15,5 +15,8 @@ router.patch("/role/:id", RoleController.GetRoleById);
 // router.get("users", RoleController.GetUsers);
 router.post("/users/register", UserValidation.RegisterValidation, UserController.Register);
 router.post("/users/login", UserValidation.LoginValidation, UserController.UserLogin)
+router.get("/users/refresh-token", UserController.refreshToken);
+router.get("/users/current-user", Authorization.Authenticated, UserController.UserDetail);
+router.get("/users/logout", Authorization.Authenticated, UserController.UserLogout);
 
 export default router;

@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import connection from "../../config/dbConnnect";
+import Role from "./Role";
 
 interface UserAttributes{
   id?: number,
@@ -75,6 +76,6 @@ User.init({
   underscored       : false
 });
 
-
+User.belongsTo(Role, { foreignKey: "roleId"})
 
 export default User;
