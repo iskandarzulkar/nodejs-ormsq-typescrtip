@@ -9,3 +9,6 @@ CRUD NodeJS use ORM Sequelize & {TypeScript}
      -> helper
      -> middleware
      -> routes
+
+# npm i 
+# npm run dev
