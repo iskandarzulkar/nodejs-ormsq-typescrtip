@@ -1,7 +1,7 @@
 # nodejs-ormsq-typescrtip
 CRUD NodeJS use ORM Sequelize & {TypeScript}
 
-# Folder Structure
++ Folder Structure
  -> src
      -> config
      -> controllers
@@ -10,5 +10,5 @@ CRUD NodeJS use ORM Sequelize & {TypeScript}
      -> middleware
      -> routes
 
-# npm i 
-# npm run dev
++ npm i 
++ npm run dev
