@@ -1,2 +1,2 @@
 # nodejs-ormsq-typescrtip
-curd NodeJS ORM sequelize typescript
+CRUD NodeJS use ORM Sequelize & {TypeScript}
