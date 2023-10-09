@@ -45,3 +45,8 @@ npm i --save-dev @types/validatorjs
 npm i jsonwebtoken cookie-parser
 
 npm i @types/jsonwebtoken @types/cookie-parser
+
+
+npm install amqplib @types/amqplib
+
+npm i --save-dev @types/amqplib 

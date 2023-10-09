@@ -10,6 +10,7 @@ interface UserData{
 	verified   : boolean | null,
 	active     : boolean | null
 }
+
 const ResponseData = (status:number, message: string | null, error: any | null, data: any | null) =>{
     if (error != null && error instanceof Error) {
 		const response = {
@@ -85,5 +86,10 @@ const ExtractRefreshToken = (token: string): UserData | null =>{
 	return null;
 }
 
-
-export default {ResponseData, GenerationToken, GenerationRefreshToken, ExtractToken, ExtractRefreshToken}
+export default {
+	ResponseData, 
+	GenerationToken, 
+	GenerationRefreshToken, 
+	ExtractToken, 
+	ExtractRefreshToken
+}
