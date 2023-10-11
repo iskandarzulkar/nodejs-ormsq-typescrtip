@@ -102,7 +102,7 @@ const UpdateAccess = async(req: Request, res:Response):Promise<Response> =>{
 		menu.roleId = roleId;
 		menu.submenuId = submenuId;
 		await menu.save();
-        return res.status(200).send(Helper.ResponseData(200, "Updated", null, null));
+        return res.status(200).send(Helper.ResponseData(200, "Updated", null, menu));
     } catch (error:any) {
         return res.status(500).send(Helper.ResponseData(500, "", error, null))
     }
@@ -124,7 +124,7 @@ const SoftDeleteAccess = async(req: Request, res:Response):Promise<Response> =>{
 
 		menu.active = false;
 		await menu.save();
-		return res.status(200).send(Helper.ResponseData(200, "Updated", null, null));
+		return res.status(200).send(Helper.ResponseData(200, "Updated", null, menu));
 	
 
     } catch (error:any) {

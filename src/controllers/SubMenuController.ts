@@ -103,7 +103,7 @@ const UpdateSubMenu = async (req: Request, res:Response):Promise<Response> =>{
 		submenu.isTargetSelf    = isTargetSelf;
 
 		await submenu.save();
-        return res.status(200).send(Helper.ResponseData(200, "Updated", null, null));
+        return res.status(200).send(Helper.ResponseData(200, "Updated", null, submenu));
     } catch (error:any) {
         return res.status(500).send(Helper.ResponseData(500, "", error, null))
     }
@@ -125,8 +125,8 @@ const SoftDeleteSubMenu  = async (req: Request, res:Response):Promise<Response> 
 		}
 
 		submenu.active = false;
-
-		return res.status(200).send(Helper.ResponseData(200, "Removed", null, null));
+		await submenu.save();
+		return res.status(200).send(Helper.ResponseData(200, "Removed", null, submenu));
     } catch (error:any) {
         return res.status(500).send(Helper.ResponseData(500, "", error, null))
     }
@@ -139,8 +139,7 @@ const DeletePermanentSubMenu = async(req:Request, res:Response):Promise<Response
 
 		const submenu = await SubMenu.findOne({
 			where: {
-				id: id,
-				active: true
+				id: id
 			}
 		});
 

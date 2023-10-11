@@ -86,7 +86,7 @@ const UpdateMenu = async (req: Request, res:Response):Promise<Response> =>{
 		menu.ordering   = ordering;
 
 		await menu.save();
-        return res.status(200).send(Helper.ResponseData(200, "Updated", null, null));
+        return res.status(200).send(Helper.ResponseData(200, "Updated", null, menu));
     } catch (error:any) {
         return res.status(500).send(Helper.ResponseData(500, "", error, null))
     }
@@ -108,8 +108,9 @@ const SoftDeleteMenu  = async (req: Request, res:Response):Promise<Response> =>{
 		}
 
 		menu.active = false;
-
-		return res.status(200).send(Helper.ResponseData(200, "Removed", null, null));
+		await menu.save();
+		
+		return res.status(200).send(Helper.ResponseData(200, "Removed", null, menu));
     } catch (error:any) {
         return res.status(500).send(Helper.ResponseData(500, "", error, null))
     }
@@ -122,8 +123,7 @@ const DeletePermanent = async(req:Request, res:Response):Promise<Response> => {
 
 		const menu = await MasterMenu.findOne({
 			where: {
-				id: id,
-				active: true
+				id: id
 			}
 		});
 

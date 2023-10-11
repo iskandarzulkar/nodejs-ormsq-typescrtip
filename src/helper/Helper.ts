@@ -66,6 +66,10 @@ const ExtractToken = (token: string): UserData | null =>{
 }
 
 const ExtractRefreshToken = (token: string): UserData | null =>{
+	console.log('------------------');
+	console.log(token);
+	console.log('------------------');
+	console.log(process.env.JWT_REFRESH_TOKEN);
 	const sercretKey:string = process.env.JWT_REFRESH_TOKEN as string;
 
 	let resData: any;

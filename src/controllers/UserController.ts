@@ -4,6 +4,11 @@ import User from '../db/models/user';
 import Helper from "../helper/Helper";
 import PasswordHelper from '../helper/PasswordHelper';
 import Role from '../db/models/Role';
+import RoleMenuAccess from '../db/models/RoleMenuAccess';
+import MasterMenu from '../db/models/mastermenu';
+import SubMenu from '../db/models/submenu';
+
+import { Op } from 'sequelize';
 
 const Register = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -33,9 +38,13 @@ const UserLogin = async (req: Request, res: Response): Promise<Response> => {
         const user = await User.findOne({
             where:{
                 email: email
-            }
+            },
+            // include:{
+			// 		model: Role,
+			// 		attributes: ['roleName']
+            // }
         })
-
+        
         if(!user){
             return res.status(401).send(Helper.ResponseData(401, "Not Found", null, null));
         }
@@ -65,13 +74,41 @@ const UserLogin = async (req: Request, res: Response): Promise<Response> => {
             maxAge: 24 * 60 * 60 * 100
         });
 
+
+        const RoleAccess = await RoleMenuAccess.findAll({
+            where:{
+                roleId: user.roleId,
+                active: true
+            }
+        })
+
+        const listSubMenuId = RoleAccess.map((item) =>{
+            return item.submenuId
+        })
+
+        const menuAccess = await MasterMenu.findAll({
+            where:{
+                active: true,
+            },
+            order:[
+                ['ordering', 'ASC'],
+                [SubMenu, 'ordering', 'ASC']
+            ],
+            include:{
+                model : SubMenu,
+                where :{
+                    id: {[Op.in]: listSubMenuId}
+                }
+            }
+        })
         const responseUser = {
             name        : user.name,
             email       : user.email,
             roleId      : user.roleId,
             verified    : user.verified,
             active      : user.active,
-            token       : token
+            token       : token,
+            menuAccess  : menuAccess
         }
         return res.status(201).send(Helper.ResponseData(201, "Ok", null, responseUser));
     } catch (error:any) {
@@ -83,22 +120,23 @@ const refreshToken = async (req: Request, res: Response): Promise<Response> =>{
     try {
     
         const refreshToken = req.cookies?.refreshToken;
+        
         if(!refreshToken){
             return res.status(401).send(Helper.ResponseData(401, "", null, null));
         }
 
         const decodedUser = Helper.ExtractRefreshToken(refreshToken);
-        console.log(decodedUser);
+        
         if(!decodedUser){
             return res.status(401).send(Helper.ResponseData(401, "", null, null));
         }
         
         const token = Helper.GenerationToken({
-			name: decodedUser.name,
-			email: decodedUser.email,
-			roleId: decodedUser.roleId,
-			verified: decodedUser.verified,
-			active: decodedUser.active
+			name       : decodedUser.name,
+			email      : decodedUser.email,
+			roleId     : decodedUser.roleId,
+			verified   : decodedUser.verified,
+			active     : decodedUser.active
 		});
 
 

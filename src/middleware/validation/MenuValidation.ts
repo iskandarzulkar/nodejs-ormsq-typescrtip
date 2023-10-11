@@ -15,12 +15,10 @@ const CreateMasterMenuValidation = async(req: Request, res: Response, next: Next
             ordering
         };
     
-    
-    
         const rules: Validator.Rules ={
             "name"        : "required|string|max:50",
             "icon"        : "required|string",
-            "ordering"    : "required|number"
+            "ordering"    : "required|numeric"
         }
     
         const validation = new Validator(data, rules);
