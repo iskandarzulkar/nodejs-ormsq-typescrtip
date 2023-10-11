@@ -17,10 +17,10 @@ const RegisterValidation = async(req: Request, res: Response, next: NextFunction
     
     
         const rules: Validator.Rules ={
-            "name": "required|string|max:50",
-            "email": "required|email",
-            "password": "required|min:8",
-            "confirmPassword": "required|same:password"
+            "name"              : "required|string|max:50",
+            "email"             : "required|email",
+            "password"          : "required|min:8",
+            "confirmPassword"   : "required|same:password"
         }
     
         const validation = new Validator(data, rules);

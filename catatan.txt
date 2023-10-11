@@ -50,3 +50,16 @@ npm i @types/jsonwebtoken @types/cookie-parser
 npm install amqplib @types/amqplib
 
 npm i --save-dev @types/amqplib 
+
+
+# create menu / create model sequelize
+npx sequelize-cli model:generate --name MasterMenu --attributes name:string,icon:text,ordering:integer,active:boolean
+
+#create sub menu 
+npx sequelize-cli model:generate --name SubMenu --attributes name:string,masterMenuId:bigint,url:text,title:string,icon:text,ordering:integer,isTargetSelf:boolean,active:boolean
+
+npx sequelize-cli db:migrate
+
+npx sequelize-cli model:generate --name RoleMenuAccess --attributes roleId:bigint,submenuId:bigint,active:boolean
+
+npx sequelize-cli db:migrate
